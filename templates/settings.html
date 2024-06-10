@@ -1,0 +1,6 @@
+{{ template "header"}}
+{{ range .Commands}}
+<a href="/set?command={{.Name}}"><button>{{.Name}}</button></a>
+{{end}}
+<a href="/set"><button>set</button></a>
+{{ template "footer"}}

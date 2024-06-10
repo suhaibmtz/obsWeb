@@ -1,0 +1,21 @@
+{{ template "header"}}
+{{ range .Commands}}
+<button onclick="Send('{{.Name}}')">{{.Name}}</button>
+{{end}}
+<a href="/settings"><button>Settings</button></a>
+<script>
+
+var values = {
+{{ range .Commands}}
+"{{.Name}}":'{{.Command}}',
+{{end}}
+}
+const Socket = new WebSocket(
+  "ws://localhost:8822/socket"
+);
+function Send(id) {
+  Socket.send(values[id]);
+}
+
+</script>
+{{ template "footer"}}

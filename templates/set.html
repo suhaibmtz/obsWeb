@@ -1,0 +1,19 @@
+{{ template "header" }}
+<form method=POST name=aform>
+{{ if .ShowName}}
+Name: <input type="text" name=name><br><br>
+{{end}}
+Value: <textarea id=textarea>{{ if ne .Value "" }}{{.Value}}{{end}}</textarea>
+<input type="hidden" name="value" id=value>
+<input type="hidden" name="set" value=set>
+</form>
+<button onclick="set()">Set</button>
+<script>
+function set() {
+  textarea = document.getElementById("textarea");
+  val = document.getElementById("value");
+  val.setAttribute("value",textarea.value)
+  aform.submit()
+}
+</script>
+{{ template "footer" }}
